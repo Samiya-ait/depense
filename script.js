@@ -32,6 +32,10 @@ Array.from(b).forEach((btn)=>{
     console.log(btn.textContent)
 })
 
+//etape2
+console.log(`children--${liste.children.length}`)
+console.log(`childNodes--${liste.childNodes.length}`)
+console.log(`firstChild--${liste.firstChild}`)
 
 
 
