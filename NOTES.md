@@ -21,6 +21,16 @@ on peut boucler sur les nodeList mais on peut pas sur htmlCollection(objet),il f
 * liste.firstChild: dans le console, il s'affiche ca "[object Text]", jai cherche je trouve que souvent il retourne la saute du ligne.
 
 ## EXPLIQUE 3
-*lorsqu'on  retire la ligne qui vide la liste , les elements s'affichent dupliqué
+* lorsqu'on  retire la ligne qui vide la liste , les elements s'affichent dupliqué
+
+## EXPLIQUE 4
+* when we remove event.prevenetDefault(), the page reload automatically,the things that we add have gone instantaly.
+
+## EXPLIQUE 5
+* console.log(Number(montant.value))   //  affiche: 0
+* si la condition est >= 0 , lorsque l'utilisateur saisi rien, elle considere le champ vide comme 0, donc il va lajouter au tableau.
+
+
+
 
 

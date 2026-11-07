@@ -56,8 +56,38 @@ function afficher(tableau){
     })
     let sum=tableau.reduce((somme,d)=> somme+d.montant,0)
     total.textContent=sum;
-    console.log(total.textContent)
+    
 }
 afficher(depenses)
+
+
+// etape 4
+form.addEventListener("submit",(event)=>{
+    event.preventDefault()
+
+    inputNom=nom.value.trim()
+    inputMontant=Number(montant.value.trim())
+
+    if(inputNom.length<2){
+        erreur.textContent="faut saisir au moins 2 letteres"
+        erreur.classList.add("text-red")
+        return;
+    }else if( inputMontant <= 0){
+        erreur.textContent="le montant doit etre superieur a 0"
+        return;
+    }else{
+        const depenseObj={
+            id:Date.now(),
+            nom:inputNom,
+            montant:inputMontant,
+            cat:cat.value.trim()
+        }
+        depenses.push(depenseObj)  
+    }
+    form.reset()  
+    afficher(depenses)
+})
+
+
 
 
