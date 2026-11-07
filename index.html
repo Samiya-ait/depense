@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+    <title>depenses</title>
+  </head>
+  <body>
+    <main>
+      <form id="form" novalidate>
+        <input id="nom" type="text" />
+        <input id="montant" type="number" />
+        <select name="cat" id="cat">
+          <option value="food">food</option>
+          <option value="transport">transport</option>
+          <option value="loisirs">loisirs</option>
+        </select>
+        <button>choix</button>
+        <p id="erreur"></p>
+        <div id="filtres">
+          <button class="filtre" data-cat="tous">tous</button>
+          <button class="filtre" data-cat="food">food</button>
+          <button class="filtre" data-cat="transport">transport</button>
+          <button class="filtre" data-cat="loisirs">loisirs</button>
+        </div>
+
+        <ul id="liste">
+            
+        </ul>
+        <p id="total"></p>
+      </form>
+    </main>
+  </body>
+</html>
