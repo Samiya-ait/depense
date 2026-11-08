@@ -2,8 +2,10 @@ let depenses = [
     { id: 1, nom: "Café", montant: 12, cat: "food" },
     { id: 2, nom: "Tram", montant: 8, cat: "transport" }
 ];
+let filter = "tous"
+let search = null
 
-let copy=[...depenses]
+let copy = [...depenses]
 
 // etape1
 const form = document.querySelector("#form")
@@ -12,8 +14,8 @@ const montant = document.querySelector("#montant")
 const liste = document.querySelector("#liste")
 const erreur = document.querySelector("#erreur")
 const total = document.querySelector("#total")
-const buttons=document.querySelectorAll(".filtre")
-const searchInput=document.querySelector("#recherche")
+const buttons = document.querySelectorAll(".filtre")
+const searchInput = document.querySelector("#recherche")
 
 
 // const a=document.querySelectorAll(".filtre")
@@ -52,7 +54,7 @@ function afficher(tableau) {
     liste.innerHTML = ""    //dans ce cas c quoi la diff entre innerHtml et textContent.
     tableau.forEach((elt) => {
         liste.innerHTML += `<li data-id=${elt.id} data-cat=${elt.cat}>${elt.nom} . ${elt.montant}DH <button class="suppr"><span>🗑</span></button></li> `
-        
+
     })
     let sum = tableau.reduce((somme, d) => somme + d.montant, 0)
     total.textContent = `TOTAL : ${sum}`;
@@ -84,46 +86,48 @@ form.addEventListener("submit", (event) => {
         depenses.push(depenseObj)
     }
     form.reset()
-    afficher(depenses)
+    appliquer()
 })
 
 // etape 5
 
 liste.addEventListener("click", (event) => {
     console.log(event.target, event.currentTarget);
-    
-    const click=event.target.closest(".suppr")
+
+    const click = event.target.closest(".suppr")
     if (event.target.closest(".suppr")) {
-         copy = copy.filter(d => d.id!=click.parentElement.dataset.id)
+        copy = copy.filter(d => d.id != click.parentElement.dataset.id)
         afficher(copy)
     }
-
 })
 
 //etape 6
-buttons.forEach(btn=>{
-    btn.addEventListener("click", (event)=>{
-    let click=event.target.dataset.cat
-    let category=depenses.filter((d)=>d.cat===click)
-    if(click==="tous"){
-        afficher(depenses)
-    }else{
-        afficher(category)
-    }
-    
-})
+buttons.forEach(btn => {
+    btn.addEventListener("click", (event) => {
+        filter = event.target.dataset.cat
+        appliquer()
+    })
 })
 
 
 //etape 7
-searchInput.addEventListener("input",()=>{
-    let rslt;
-    let ToSearch=searchInput.value.trim().toLocaleLowerCase()
-    rslt=depenses.filter((dep)=>dep.nom.toLocaleLowerCase().includes(ToSearch))
+searchInput.addEventListener("input", () => {
 
-afficher(rslt)
-    
+    search = searchInput.value.trim().toLowerCase()
+    appliquer()
+
 })
 
+
+function appliquer() {
+
+    let newSearchArr = depenses.filter((d) => d.nom.toLowerCase().includes(search))
+    if (filter === "tous") {
+        afficher(newSearchArr)
+    } else {
+        newFilterArr = newSearchArr.filter((nr => nr.cat === filter))
+        afficher(newFilterArr)
+    }
+}
 
 
