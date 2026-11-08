@@ -3,7 +3,7 @@ let depenses = [
     { id: 2, nom: "Tram", montant: 8, cat: "transport" }
 ];
 let filter = "tous"
-let search = null
+let search = ""
 
 let copy = [...depenses]
 
@@ -73,6 +73,8 @@ form.addEventListener("submit", (event) => {
         erreur.textContent = "faut saisir au moins 2 letteres"
         erreur.classList.add("text-red")
         return;
+    }else if(depenses.map((d) => d.nom.toLowerCase()).includes(inputNom.toLowerCase())){
+        erreur.textContent = "Cette dépense existe déjà"
     } else if (inputMontant <= 0) {
         erreur.textContent = "le montant doit etre superieur a 0"
         return;
@@ -120,7 +122,7 @@ searchInput.addEventListener("input", () => {
 
 
 function appliquer() {
-
+    
     let newSearchArr = depenses.filter((d) => d.nom.toLowerCase().includes(search))
     if (filter === "tous") {
         afficher(newSearchArr)
@@ -129,5 +131,9 @@ function appliquer() {
         afficher(newFilterArr)
     }
 }
+
+
+
+// etape 8
 
 
