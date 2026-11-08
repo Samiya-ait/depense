@@ -3,6 +3,8 @@ let depenses = [
     { id: 2, nom: "Tram", montant: 8, cat: "transport" }
 ];
 
+let copy=[...depenses]
+
 // etape1
 const form = document.querySelector("#form")
 const nom = document.querySelector("#nom")
@@ -11,6 +13,7 @@ const liste = document.querySelector("#liste")
 const erreur = document.querySelector("#erreur")
 const total = document.querySelector("#total")
 const buttons=document.querySelectorAll(".filtre")
+const searchInput=document.querySelector("#recherche")
 
 
 // const a=document.querySelectorAll(".filtre")
@@ -88,11 +91,11 @@ form.addEventListener("submit", (event) => {
 
 liste.addEventListener("click", (event) => {
     console.log(event.target, event.currentTarget);
-
+    
     const click=event.target.closest(".suppr")
     if (event.target.closest(".suppr")) {
-         depenses = depenses.filter(d => d.id!=click.parentElement.dataset.id)
-        afficher(depenses)
+         copy = copy.filter(d => d.id!=click.parentElement.dataset.id)
+        afficher(copy)
     }
 
 })
@@ -111,6 +114,16 @@ buttons.forEach(btn=>{
 })
 })
 
+
+//etape 7
+searchInput.addEventListener("input",()=>{
+    let rslt;
+    let ToSearch=searchInput.value.trim().toLocaleLowerCase()
+    rslt=depenses.filter((dep)=>dep.nom.toLocaleLowerCase().includes(ToSearch))
+
+afficher(rslt)
+    
+})
 
 
 
