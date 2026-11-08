@@ -30,6 +30,11 @@ on peut boucler sur les nodeList mais on peut pas sur htmlCollection(objet),il f
 * console.log(Number(montant.value))   //  affiche: 0
 * si la condition est >= 0 , lorsque l'utilisateur saisi rien, elle considere le champ vide comme 0, donc il va lajouter au tableau.
 
+## EXPLIQUE 6
+target vale toujours l'elemnet cliqué, et current target vale le parent ou le conteneur de l element cliqué.
+
+## EXPLIQUE 7
+jai pas compris.
 
 
 
