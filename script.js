@@ -10,6 +10,7 @@ const montant = document.querySelector("#montant")
 const liste = document.querySelector("#liste")
 const erreur = document.querySelector("#erreur")
 const total = document.querySelector("#total")
+const buttons=document.querySelectorAll(".filtre")
 
 
 // const a=document.querySelectorAll(".filtre")
@@ -47,17 +48,11 @@ function afficher(tableau) {
 
     liste.innerHTML = ""    //dans ce cas c quoi la diff entre innerHtml et textContent.
     tableau.forEach((elt) => {
-        // const li=document.createElement("li")
-        // li.innerHTML=`${elt.nom} . ${elt.montant}DH `
-        // li.dataset.id=elt.id
-        // li.innerHTML+='<button class="suppr"><span>🗑</span></button>'
-        // liste.append(li)
-        liste.innerHTML += `<li data-id=${elt.id}>${elt.nom} . ${elt.montant}DH <button class="suppr"><span>🗑</span></button></li> `
-
+        liste.innerHTML += `<li data-id=${elt.id} data-cat=${elt.cat}>${elt.nom} . ${elt.montant}DH <button class="suppr"><span>🗑</span></button></li> `
+        
     })
     let sum = tableau.reduce((somme, d) => somme + d.montant, 0)
-    total.textContent = sum;
-
+    total.textContent = `TOTAL : ${sum}`;
 }
 afficher(depenses)
 
@@ -101,4 +96,21 @@ liste.addEventListener("click", (event) => {
     }
 
 })
+
+//etape 6
+buttons.forEach(btn=>{
+    btn.addEventListener("click", (event)=>{
+    let click=event.target.dataset.cat
+    let category=depenses.filter((d)=>d.cat===click)
+    if(click==="tous"){
+        afficher(depenses)
+    }else{
+        afficher(category)
+    }
+    
+})
+})
+
+
+
 

@@ -36,6 +36,9 @@ target vale toujours l'elemnet cliqué, et current target vale le parent ou le c
 ## EXPLIQUE 7
 jai pas compris.
 
+## EXPLIQUE 8
+le total affiché est celui du filtre,car il depend du tableau qu'on affiche
+
 
 
 
