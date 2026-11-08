@@ -39,6 +39,7 @@ jai pas compris.
 ## EXPLIQUE 8
 le total affiché est celui du filtre,car il depend du tableau qu'on affiche
 
-
+## EXPLIQUE 9
+js est sensible a la casse, C != c, cest pourquoi il faut transformer les deux soit au lowerCase ou au upperCase.
 
 
