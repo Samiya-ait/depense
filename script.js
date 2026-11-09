@@ -20,7 +20,7 @@ const erreur = document.querySelector("#erreur")
 const total = document.querySelector("#total")
 const buttons = document.querySelectorAll(".filtre")
 const searchInput = document.querySelector("#recherche")
-
+const statistics = document.querySelector("#stats")
 
 // const a=document.querySelectorAll(".filtre")
 // const b=document.getElementsByClassName("filtre")
@@ -78,7 +78,7 @@ form.addEventListener("submit", (event) => {
         erreur.classList.add("text-red")
         return;
         // etape8
-    }else if(depenses.map((d) => d.nom.toLowerCase()).includes(inputNom.toLowerCase())){
+    } else if (depenses.map((d) => d.nom.toLowerCase()).includes(inputNom.toLowerCase())) {
         erreur.textContent = "Cette dépense existe déjà"
         return;
         //fin de partie1 du etape 8
@@ -86,7 +86,7 @@ form.addEventListener("submit", (event) => {
         erreur.textContent = "le montant doit etre superieur a 0"
         return;
     } else {
-        erreur.textContent=""
+        erreur.textContent = ""
 
         const depenseObj = {
             id: Date.now(),
@@ -133,7 +133,7 @@ searchInput.addEventListener("input", () => {
 
 
 function appliquer() {
-    
+
     let newSearchArr = depenses.filter((d) => d.nom.toLowerCase().includes(search))
     if (filter === "tous") {
         afficher(newSearchArr)
@@ -141,18 +141,41 @@ function appliquer() {
         newFilterArr = newSearchArr.filter((nr => nr.cat === filter))
         afficher(newFilterArr)
     }
-    stats(depenses)
+    statistics.textContent=stats(depenses)
 }
 
 
+// etape8 partie2
+function stats(tableau) {
+    let max;
+    if (tableau.length !== 0) {
+        max = Math.max(...tableau.map((d) => d.montant))
+    } else {
+        max = "___"
+    }
+
+    let cats = tableau.map(elt => elt.cat)
+    let OneCat = cats.filter((c, i) => cats.indexOf(c) === i)
+
+    let fifty = tableau.filter((f) => f.montant >= 50).length
+
+
+    console.log(`max : ${max}`)
+    console.log(`categories : ${OneCat}`)
+    console.log(`montant 50 : ${fifty}`)
+
+}
 
 
 
 // etape 9
 
-function sauvgarder(){
-    localStorage.setItem("depenses",JSON.stringify(depenses));
+function sauvgarder() {
+    localStorage.setItem("depenses", JSON.stringify(depenses));
 }
+
+
+
 
 
 
