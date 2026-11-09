@@ -9,7 +9,6 @@ let depenses = JSON.parse(localStorage.getItem("depenses")) || [];
 let filter = "tous"
 let search = ""
 
-let copy = [...depenses]
 
 // etape1
 const form = document.querySelector("#form")
@@ -104,12 +103,12 @@ form.addEventListener("submit", (event) => {
 // etape 5
 
 liste.addEventListener("click", (event) => {
-    console.log(event.target, event.currentTarget);
+    // console.log(event.target, event.currentTarget);
 
     const click = event.target.closest(".suppr")
     if (event.target.closest(".suppr")) {
-        copy = copy.filter(d => d.id != click.parentElement.dataset.id)
-        afficher(copy)
+        depenses = depenses.filter(d => d.id != click.parentElement.dataset.id)
+        appliquer()
     }
     sauvgarder()
 })
