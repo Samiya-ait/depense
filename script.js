@@ -1,7 +1,11 @@
-let depenses = [
-    { id: 1, nom: "Café", montant: 12, cat: "food" },
-    { id: 2, nom: "Tram", montant: 8, cat: "transport" }
-];
+// let depenses = [
+//     { id: 1, nom: "Café", montant: 12, cat: "food" },
+//     { id: 2, nom: "Tram", montant: 8, cat: "transport" }
+// ];
+
+let depenses = JSON.parse(localStorage.getItem("depenses")) || [];
+
+
 let filter = "tous"
 let search = ""
 
@@ -73,12 +77,17 @@ form.addEventListener("submit", (event) => {
         erreur.textContent = "faut saisir au moins 2 letteres"
         erreur.classList.add("text-red")
         return;
+        // etape8
     }else if(depenses.map((d) => d.nom.toLowerCase()).includes(inputNom.toLowerCase())){
         erreur.textContent = "Cette dépense existe déjà"
+        return;
+        //fin de partie1 du etape 8
     } else if (inputMontant <= 0) {
         erreur.textContent = "le montant doit etre superieur a 0"
         return;
     } else {
+        erreur.textContent=""
+
         const depenseObj = {
             id: Date.now(),
             nom: inputNom,
@@ -89,6 +98,7 @@ form.addEventListener("submit", (event) => {
     }
     form.reset()
     appliquer()
+    sauvgarder()
 })
 
 // etape 5
@@ -101,6 +111,7 @@ liste.addEventListener("click", (event) => {
         copy = copy.filter(d => d.id != click.parentElement.dataset.id)
         afficher(copy)
     }
+    sauvgarder()
 })
 
 //etape 6
@@ -130,10 +141,19 @@ function appliquer() {
         newFilterArr = newSearchArr.filter((nr => nr.cat === filter))
         afficher(newFilterArr)
     }
+    stats(depenses)
 }
 
 
 
-// etape 8
+
+
+// etape 9
+
+function sauvgarder(){
+    localStorage.setItem("depenses",JSON.stringify(depenses));
+}
+
+
 
 
