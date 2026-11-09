@@ -1,9 +1,10 @@
 ## EXPLIQUE 1
-* ###### querySelectorAll: apporte seulemnet ce qui est existe dans le moment d'execution , lorsqu'on ajoute un nouveau elt il ne se compte pas.
+*  querySelectorAll: apporte seulemnet ce qui est existe dans le moment d'execution , lorsqu'on ajoute un nouveau elt il ne se compte pas.
 
 
-* ###### getElementsByClassName: appoorte les elemnts au temps d'execution et aussi les elements ajoutées apres 
+*  getElementsByClassName: appoorte les elemnts au temps d'execution et aussi les elements ajoutées apres 
 
+### nodeList-VS-htmlCollection (.length)
 a.length ... 4
 b.length ... 4
 ms lorsqu'on ajoute un autre element :
